@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="legalmvc" data-framework="firebase">
+<head>
+    <link href="css/button.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/grid.css" rel="stylesheet">
+    <link href="css/input.css" rel="stylesheet">
+    <link href="css/icon.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="ui fixed transparent inverted main menu">
+    <div class="item">
+        <button class="ui black button mini" >About Us</button>
+        <button class="ui white button mini" >DONATE</button>
+    </div>
+    <div class="text item" style="text-align:center;"> LEGAL CITATOR</div>
+    <div class="item" style="float:right;">
+        <div class="mini black ui labeled icon button">
+        <i class="signup icon"></i>
+        Register
+    </div>
+
+    <div class="mini ui labeled icon button">
+
+        Sign In
+        <i class="folder icon"></i>
+    </div>
+    </div>
+
+</div>
+<div class ="ui celled grid">
+
+
+
+
+
+
+
+    <div class="row" ng-controller="FormCtrl">
+
+        <div class="one wide column" >
+
+
+
+            <button ng-click="doc = 1" class="fluid ui black small button " style="margin-top: 6px">Case</button>
+
+
+            <button ng-click="doc = 2" class="fluid ui black small button" style="margin-top: 6px">Legislation</button>
+            <button class="fluid ui black small button" style="margin-top: 6px">Journal</button>
+            <button class="fluid ui black small button " style="margin-top: 6px">Extrinsic Material</button>
+            <button class="fluid ui black small button" style="margin-top: 6px">Other</button>
+        </div>
+
+        <div class="nine wide column"  style="text-align:center" >
+            <span style="font-size:15px"><span style="font-size:17px">B</span>IBLIOGRAPHY</span><br><br>
+
+            <div ng-show="!caseData">
+                <div>A<i> Articles/Books/Reports</i></div>
+                <br>
+                <br> </div>
+
+            <div ng-show="caseData"><b>B<i> Cases</i></b></div><br>
+            <div ng-repeat="case in caseData"> <i>{{case.name}} </i> <span ng-if="case.volume!=-1">{{'('+case.year+') '+case.volume}}</span><span ng-if="case.volume==-1">{{'['+case.year+'] '}}</span>
+                {{ " "+case.lawReport+ case.startingPage}} <span ng-if="case.pinpoint!=-1">{{case.pinpoint}}</span><br><br></div>
+
+
+
+
+            <div ng-show="legislationData"><b>C<i> Legistion</i></b></div><br>
+            <div ng-repeat="legislation in legislationData"> <i>{{legislation.title+" "+legislation.year}}</i> ({{legislation.jurisdiction}}) <span ng-if="legislation.pinpoint">{{legislation.pinpoint}}</span><br><br></div></div>
+        <div ng-show="!caseData">D<i> Treaties</i></div>
+        <br><br>
+
+        <div ng-show="!caseData">E<i> Other</i></div>
+
+        <br>
+
+
+
+        <div class="three wide column">
+
+            <form id="case-form"   ng-submit="addCase()" ng-show="doc ===1">
+                <h4 class="ui black header">
+                    Enter Case Information
+
+                </h4>
+
+
+                <div class="ui input fluid mini">
+                    <input type="text"  ng-model="newCaseName" placeholder="Case Name">
+                </div>
+
+
+
+
+                <div class="ui input fluid mini">
+                    <input type="number" ng-model="newYear" placeholder="Year">
+                </div>
+                <div class="ui input fluid mini">
+                    <input type="number"  ng-model="newVolume" placeholder="Volume">
+                </div>
+
+                <div class="ui input fluid mini">
+                    <input type="text"  ng-model="newLawReport" placeholder="Law Report Series">
+                </div>
+                <div class="ui input fluid mini">
+                    <input type="number"  ng-model="newStartingPage" placeholder="Starting Page">
+                </div>
+                <div class="ui input fluid mini">
+                    <input type="number" ng-model="newPinpoint" placeholder="Pinpoint">
+                </div>
+
+
+
+                <button type="submit" class="ui basic small button fluid icon add">
+                    Submit <i class=" icon add" ></i>
+
+                </button>
+            </form>
+
+            <form id="legislation-form" ng-submit="addLegislation()" ng-show="doc===2">
+
+                <h4 class="ui black header">
+                    Enter Legislation Information
+
+                </h4>
+                <div class="ui input fluid mini">
+                    <input type="text"  ng-model="newTitle" placeholder="Title">
+                </div>
+                <div class="ui input fluid mini">
+                    <input type="number"  ng-model="newYear" placeholder="Year">
+                </div>
+                <div class="ui input fluid mini">
+                    <input type="text"  ng-model="newJurisdiction" placeholder="Jurisdiction">
+                </div>
+                <div class="ui input fluid mini">
+                    <input type="number" ng-model="newPinpoint" placeholder="Pinpoint">
+                </div>
+
+
+
+                <button type="submit" class="ui basic small button fluid icon add">
+                    Submit <i class=" icon add" ></i>
+
+                </button>
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/factories.js"></script>
+<script src="js/controllers.js"></script>
+
+
+
+<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+<script src='https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js'></script>
+</body>
+<!--<script src="js/ui-bootstrap-tpls-0.9.0.min.js"></script>--/!>

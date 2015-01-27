@@ -1,0 +1,40 @@
+.right {
+    width: 18%;
+    float:right;
+
+}
+
+.left{
+    float:left;
+    width: 80%;
+    margin-top:10px;
+
+}
+
+.biblio-center{
+    text-align:center;
+    margin-left:10px;
+    width:auto;
+    margin: 0 auto;
+    margin-left:170px;
+
+}
+.top-buttons{
+    margin-top:8px;
+
+}
+
+.vertical-buttons{
+    float:left;
+    margin-left:16px;
+    width:15%;
+
+}
+
+html, body {
+    height: 100%;
+    font-size: 15px;
+}
+html, body {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
